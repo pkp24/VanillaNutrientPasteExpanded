@@ -37,31 +37,36 @@ jobs:
         cd VanillaExpandedFramework
         git checkout 1.6
 
-    # 3️⃣ Verify PipeSystem.dll is available
+    # 3️⃣ Copy PipeSystem.dll to mod source directory for build
+    - name: Copy PipeSystem.dll for build
+      run: |
+        cp VanillaExpandedFramework/1.6/Assemblies/PipeSystem.dll Source/VNPE/
+
+    # 4️⃣ Verify PipeSystem.dll is available
     - name: Verify PipeSystem dependency
       run: |
-        if (Test-Path "VanillaExpandedFramework\1.6\Assemblies\PipeSystem.dll") {
-          Write-Host "PipeSystem.dll found successfully"
+        if (Test-Path "Source/VNPE/PipeSystem.dll") {
+          Write-Host "PipeSystem.dll found successfully in Source/VNPE/"
         } else {
-          Write-Error "PipeSystem.dll not found!"
+          Write-Error "PipeSystem.dll not found in Source/VNPE/!"
           exit 1
         }
 
-    # 4️⃣ Install .NET SDK 8 (includes .NET Framework ref-packs)
+    # 5️⃣ Install .NET SDK 8 (includes .NET Framework ref-packs)
     - name: Set up .NET SDK
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
 
-    # 5️⃣ Restore NuGet packages
+    # 6️⃣ Restore NuGet packages
     - name: Restore packages
       run: dotnet restore "${{ env.MOD_SRC_PATH }}"
 
-    # 6️⃣ Build in Release mode
+    # 7️⃣ Build in Release mode
     - name: Build (Release)
       run: dotnet build "${{ env.MOD_SRC_PATH }}" --configuration Release --no-restore
 
-    # 7️⃣ Copy ONLY mod DLLs to 1.6/Assemblies
+    # 8️⃣ Copy ONLY mod DLLs to 1.6/Assemblies
     - name: Copy mod DLLs to 1.6/Assemblies
       shell: pwsh
       run: |
@@ -79,7 +84,7 @@ jobs:
           }
         }
 
-    # 8️⃣ Commit & push the DLL(s) back to the current branch
+    # 9️⃣ Commit & push the DLL(s) back to the current branch
     - name: Commit built DLLs
       shell: bash
       env:
