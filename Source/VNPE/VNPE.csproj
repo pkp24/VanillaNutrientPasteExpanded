@@ -5,6 +5,7 @@
     <RootNamespace>VNPE</RootNamespace>
     <Deterministic>true</Deterministic>
     <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,5 +21,15 @@
   <ItemGroup>
     <!-- Brings in Assembly-CSharp, Verse, UnityEngine.*, etc. -->
     <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" />
+    <!-- Harmony for patching -->
+    <PackageReference Include="Lib.Harmony" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Vanilla Expanded Framework - PipeSystem -->
+    <Reference Include="PipeSystem">
+      <HintPath>..\..\..\VanillaExpandedFramework\1.6\Assemblies\PipeSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
 </Project>
