@@ -178,7 +178,7 @@ namespace VNPE
                 feed.SplitOff(count);
             }
 
-            net.DistributeAmongStorage(1);
+            net.DrawAmongStorage(1, net.storages);
             return true;
         }
     }
