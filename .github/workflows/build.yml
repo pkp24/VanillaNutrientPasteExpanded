@@ -33,7 +33,7 @@ jobs:
     # 2️⃣ Clone Vanilla Expanded Framework for PipeSystem dependency
     - name: Clone Vanilla Expanded Framework
       run: |
-        git clone https://github.com/AndroidQuazar/VanillaExpandedFramework.git
+        git clone https://github.com/Vanilla-Expanded/VanillaExpandedFramework.git
         cd VanillaExpandedFramework
         git checkout 1.6
 
