@@ -32,4 +32,12 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+
+  <!-- Fallback reference for CI environment -->
+  <ItemGroup Condition="!Exists('..\..\..\VanillaExpandedFramework\1.6\Assemblies\PipeSystem.dll')">
+    <Reference Include="PipeSystem">
+      <HintPath>VanillaExpandedFramework\1.6\Assemblies\PipeSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
 </Project>
