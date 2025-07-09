@@ -2,11 +2,24 @@
 using UnityEngine;
 using Verse;
 using System;
+using HarmonyLib;
 
 namespace VNPE
 {
     public class Building_Feeder : Building_Storage
     {
+        public ThingOwner<Thing> InnerContainer
+        {
+            get
+            {
+                var field = HarmonyLib.AccessTools.Field(typeof(Building_Storage), "innerContainer");
+                return (ThingOwner<Thing>)field.GetValue(this);
+            }
+        }
+
+
+        public new bool StorageTabVisible => false;
+
         public override Color DrawColor => Spawned && Position.IsInPrisonCell(Map) ? Building_Bed.SheetColorForPrisoner : base.DrawColor;
 
         public override void PostMake()
