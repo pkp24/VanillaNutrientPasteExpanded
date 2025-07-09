@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace VNPE
 {
