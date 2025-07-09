@@ -14,6 +14,7 @@ namespace VNPE
             var parent = __instance.parent;
             if (parent.def.defName == "VNPE_NutrientPasteFeeder")
             {
+                var feeder = parent as Building_Feeder;
                 var net = __instance.PipeNet;
 
                 var meal = ThingMaker.MakeThing(ThingDefOf.MealNutrientPaste);
@@ -31,7 +32,7 @@ namespace VNPE
                 }
 
                 meal.stackCount = amount;
-                GenPlace.TryPlaceThing(meal, parent.Position, parent.Map, ThingPlaceMode.Near);
+                feeder?.InnerContainer.TryAdd(meal, false);
                 return false;
             }
             return true;
